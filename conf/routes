@@ -1,0 +1,30 @@
+#
+# Film endpoints
+#
+GET         /api/films                                               @controllers.FilmController.findAllFilms()
+GET         /api/films/type/:filmType                                @controllers.FilmController.findAllFilmsByType(filmType)
+GET         /api/films/rented                                        @controllers.FilmController.findAllRentedFilms()
+GET         /api/films/rented/type/:filmType                         @controllers.FilmController.findAllRentedFilmsByType(filmType)
+GET         /api/films/available                                     @controllers.FilmController.findAllNonRentedFilms()
+GET         /api/films/available/type/:filmType                      @controllers.FilmController.findAllNonRentedFilmsByType(filmType)
+POST        /api/films/name/:name/filmType/:filmTypeId               @controllers.FilmController.saveFilm(name, filmTypeId: Integer)
+
+#
+# Film Type endpoints
+#
+GET         /api/filmTypes                                           @controllers.FilmTypeController.findAllFilmTypes()
+
+#
+# Customer endpoints
+#
+GET         /api/customers                                           @controllers.CustomerController.findAllCustomers()
+GET         /api/customers/code/:customerCode                        @controllers.CustomerController.findCustomerByCode(customerCode)
+GET         /api/customers/code/:customerCode/bonusPoints            @controllers.CustomerController.findBonusPointsByCustomerCode(customerCode)
+POST        /api/customers/name/:customerName/balance/:amount        @controllers.CustomerController.saveCustomer(customerName, amount)
+
+#
+# Film renting/returning endpoints
+#
+GET         /api/customerRents                                       @controllers.CustomerRentController.findAllCustomerFilmRents()
+POST        /api/customerRents                                       @controllers.CustomerRentController.rentFilms()
+POST        /api/customerReturns                                     @controllers.CustomerRentController.returnFilms()

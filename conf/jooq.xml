@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<configuration>
+    <jdbc>
+        <driver>org.postgresql.Driver</driver>
+        <url>jdbc:postgresql://localhost/video_rental_db</url>
+        <user>rest_api_user</user>
+        <password>rest_api_user</password>
+    </jdbc>
+
+    <generator>
+        <name>org.jooq.util.JavaGenerator</name>
+
+        <database>
+            <customTypes>
+                <customType>
+                    <name>DateToLocalDateConverter</name>
+                    <type>java.time.LocalDate</type>
+                    <converter>jooq.jooqconverters.DateToLocalDateConverter</converter>
+                </customType>
+            </customTypes>
+
+            <forcedTypes>
+                <forcedType>
+                    <name>DateToLocalDateConverter</name>
+                    <types>Date</types>
+                </forcedType>
+            </forcedTypes>
+
+            <name>org.jooq.util.postgres.PostgresDatabase</name>
+            <inputSchema>video_rental_schema</inputSchema>
+            <includes>.*</includes>
+        </database>
+
+        <generate>
+            <pojos>true</pojos>
+        </generate>
+
+        <target>
+            <packageName>jooq.jooqobjects</packageName>
+            <directory>app</directory>
+        </target>
+    </generator>
+
+</configuration>
